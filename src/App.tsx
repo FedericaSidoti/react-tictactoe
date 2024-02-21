@@ -12,6 +12,11 @@ export default function App() {
   const[nextIsX, setNextIsX] = useState(true);
 
   function handleClick(i){
+    //prima di copiare l'array: 
+    //controlla che la casella non sia null ovvero sia piena. se è piena, resta uguale
+    if(squares[i] !== null){
+      return; 
+    }
     const nextSquares = squares.slice();
     if (nextIsX === true){
       nextSquares[i] = "X";
