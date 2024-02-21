@@ -9,11 +9,18 @@ function Square({value, clickSquare}) {
 
 export default function App() {
   const[squares, setSquares] = useState(Array(9).fill(null)); 
+  const[nextIsX, setNextIsX] = useState(true);
 
   function handleClick(i){
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+    if (nextIsX === true){
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "0";
+    }
+
     setSquares(nextSquares);
+    setNextIsX(!nextIsX);
   }
   return (
     <>
