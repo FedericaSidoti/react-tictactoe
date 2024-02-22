@@ -39,6 +39,7 @@ function Winner (squares) {
 export default function App() {
   const[squares, setSquares] = useState(Array(9).fill(null)); 
   const[nextIsX, setNextIsX] = useState(true);
+  const[nextGame, setNextGame] = useState(false);
   //winner raccoglie il return di Winner
   const winner = Winner(squares); 
   let gameStatus; 
@@ -57,6 +58,14 @@ export default function App() {
 
   function handleReload() {
     window.location.reload();
+    setNextGame(true);
+    console.log(nextGame)
+
+    setTimeout(()=>{
+      setNextGame(false)
+      console.log(nextGame)
+    }, 5000)
+
   } 
 
   function handleClick(i){
@@ -81,8 +90,22 @@ export default function App() {
       alert("It's a draw!")
     }
   }
+
+  function Title(){
+    let classname = "page-title";
+
+    if(nextGame=== true) {
+      classname = "page-title active";
+    }
+    
+    return(
+      <h1 className={classname}>Tic Tac Toe</h1>
+    )
+  }
+
   return (
     <>
+    <Title />
     <div className="statusgame">{gameStatus}</div>
     <div className="board-row">
     <Square value={squares[0]} clickSquare = {()=> handleClick(0)} />
