@@ -18,11 +18,12 @@ $shadow :  #363636;
 
 body {
   padding: 0;
-  background-image: url(/public/img/background.jpg);
+  background-image: url(/public/img/background.png);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Changa", sans-serif;
   height: 100vh;
+  background-position: top;
 
   button {
     font-family: "Changa", sans-serif;
@@ -87,7 +88,7 @@ body {
   border-radius: 10px;
   transition: 0.5s;
   color: $pink;
-  text-shadow: 2px 2px $shadow;
+  text-shadow: 2px 2px $shadow; 
 }
 
 .page-title.active {
