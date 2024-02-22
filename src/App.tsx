@@ -59,7 +59,7 @@ export default function App() {
     setSquares((Array(9).fill(null)));
     setNextGame(true);
     setTimeout(()=>{
-      setNextGame(false)
+      // setNextGame(false)
     }, 2000)
   } 
 
@@ -76,6 +76,7 @@ export default function App() {
       nextSquares[i] = "0";
     }
 
+    if(nextGame){setNextGame(false)};
     setSquares(nextSquares);
     setNextIsX(!nextIsX);
 
@@ -87,12 +88,7 @@ export default function App() {
   }
 
   function Title(){
-    let classname = "page-title";
-
-    if(nextGame=== true) {
-      classname = "page-title active";
-    } 
-    
+    const classname = nextGame ? 'page-title active' : 'page-title';
     return(
       <h1 className={classname}>Tic Tac Toe</h1>
     )
