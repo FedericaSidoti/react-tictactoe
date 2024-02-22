@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './App.scss'
 
 function Square({value, clickSquare}) {
   // const [{value}, setValue] = useState(null);
@@ -39,6 +39,12 @@ function Winner (squares) {
 export default function App() {
   const[squares, setSquares] = useState(Array(9).fill(null)); 
   const[nextIsX, setNextIsX] = useState(true);
+  const[nextGame, setNextGame] = useState(true);
+
+  setTimeout(()=>{
+    setNextGame(false)
+    console.log(nextGame)
+  }, 5000)
   //winner raccoglie il return di Winner
   const winner = Winner(squares); 
   let gameStatus; 
@@ -57,6 +63,14 @@ export default function App() {
 
   function handleReload() {
     window.location.reload();
+    setNextGame(true);
+    console.log(nextGame)
+
+    setTimeout(()=>{
+      setNextGame(false)
+      console.log(nextGame)
+    }, 5000)
+
   } 
 
   function handleClick(i){
@@ -81,25 +95,43 @@ export default function App() {
       alert("It's a draw!")
     }
   }
+
+  function Title(){
+    let classname = "page-title";
+
+    if(nextGame=== true) {
+      classname = "page-title active";
+    } 
+    
+    return(
+      <h1 className={classname}>Tic Tac Toe</h1>
+    )
+  }
+
   return (
     <>
+    <Title />
     <div className="statusgame">{gameStatus}</div>
-    <div className="board-row">
-    <Square value={squares[0]} clickSquare = {()=> handleClick(0)} />
-    <Square value={squares[1]} clickSquare={()=>handleClick(1)} />
-    <Square value={squares[2]} clickSquare={()=>handleClick(2)}  />
+    <div className="board-wrap">
+      <div className="board">
+        <div className="board-row">
+        <Square value={squares[0]} clickSquare = {()=> handleClick(0)} />
+        <Square value={squares[1]} clickSquare={()=>handleClick(1)} />
+        <Square value={squares[2]} clickSquare={()=>handleClick(2)}  />
+        </div>
+        <div className="board-row">
+        <Square value={squares[3]} clickSquare={()=>handleClick(3)}  />
+        <Square value={squares[4]} clickSquare={()=>handleClick(4)}  />
+        <Square value={squares[5]} clickSquare={()=>handleClick(5)} />
+        </div>
+        <div className="board-row">
+        <Square value={squares[6]} clickSquare={()=>handleClick(6)} />
+        <Square value={squares[7]} clickSquare={()=>handleClick(7)} />
+        <Square value={squares[8]} clickSquare={()=>handleClick(8)} />
+        </div>
+      </div>
+      <button onClick={handleReload}>Play Again</button>
     </div>
-    <div className="board-row">
-    <Square value={squares[3]} clickSquare={()=>handleClick(3)}  />
-    <Square value={squares[4]} clickSquare={()=>handleClick(4)}  />
-    <Square value={squares[5]} clickSquare={()=>handleClick(5)} />
-    </div>
-    <div className="board-row">
-    <Square value={squares[6]} clickSquare={()=>handleClick(6)} />
-    <Square value={squares[7]} clickSquare={()=>handleClick(7)} />
-    <Square value={squares[8]} clickSquare={()=>handleClick(8)} />
-    </div>
-    <button onClick={handleReload}>Play Again</button>
     </>
   )
 }

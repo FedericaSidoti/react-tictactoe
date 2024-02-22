@@ -1,0 +1,79 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 20px;
+  padding: 0;
+  background-image: url(/public/img/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Changa", sans-serif;
+
+  button {
+    font-family: "Changa", sans-serif;
+  }
+}
+
+//titolo
+
+.page-title {
+  color: green; 
+  text-align: center; 
+}
+
+.page-title.active{
+  color: purple; 
+}
+
+//nextplayer
+
+.statusgame {
+  text-align: center;
+  color: white; 
+  margin-bottom: 20px; 
+}
+
+//tabella
+
+.board-wrap {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+  gap: 30px; 
+
+  .square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+  }
+
+  .board-row:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+
+
+
+
+
+
