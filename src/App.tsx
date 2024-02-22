@@ -99,7 +99,6 @@ export default function App() {
   }
 
   return (
-    <>
     <div className="section">
       <Title />
       <div className="statusgame">{gameStatus}</div>
@@ -124,7 +123,6 @@ export default function App() {
         <button className='shadow-btn' onClick={handleReload}>Play Again</button>
       </div>
     </div>
-    </>
-    
+
   )
 }
