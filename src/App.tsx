@@ -2,8 +2,6 @@ import { useState } from 'react'
 import './App.scss'
 
 function Square({value, clickSquare}) {
-  // const [{value}, setValue] = useState(null);
-
   return <button className="square" onClick={clickSquare}>{value}</button>;
 }
 
@@ -34,8 +32,6 @@ function Winner (squares) {
   return null; 
 }
 
-
-
 export default function App() {
   const[squares, setSquares] = useState(Array(9).fill(null)); 
   const[nextIsX, setNextIsX] = useState(true);
@@ -58,9 +54,6 @@ export default function App() {
   function handleReload() {
     setSquares((Array(9).fill(null)));
     setNextGame(true);
-    setTimeout(()=>{
-      // setNextGame(false)
-    }, 2000)
   } 
 
   function handleClick(i){
@@ -93,6 +86,26 @@ export default function App() {
       <h1 className={classname}>Tic Tac Toe</h1>
     )
   }
+  
+  function MySquares() {
+    let mysquares = []
+    for(let i = 0; i < squares.length; i= i+3){
+      mysquares.push(MyRow(i))
+    }
+    return <>{mysquares}</>
+  }
+
+  function MyRow(index : number){
+    let myBoxes = []
+    for (let i = index; i < index + 3; i++) {
+      myBoxes.push(<Square value={squares[i]} clickSquare = {()=> handleClick(i)} />)
+    }
+    return(
+    <div className='board-row'>
+      {myBoxes}
+    </div>
+    )
+  }
 
   return (
     <div className="section">
@@ -100,25 +113,10 @@ export default function App() {
       <div className="statusgame">{gameStatus}</div>
       <div className="board-wrap">
         <div className="board">
-          <div className="board-row">
-          <Square value={squares[0]} clickSquare = {()=> handleClick(0)} />
-          <Square value={squares[1]} clickSquare={()=>handleClick(1)} />
-          <Square value={squares[2]} clickSquare={()=>handleClick(2)}  />
-          </div>
-          <div className="board-row">
-          <Square value={squares[3]} clickSquare={()=>handleClick(3)}  />
-          <Square value={squares[4]} clickSquare={()=>handleClick(4)}  />
-          <Square value={squares[5]} clickSquare={()=>handleClick(5)} />
-          </div>
-          <div className="board-row">
-          <Square value={squares[6]} clickSquare={()=>handleClick(6)} />
-          <Square value={squares[7]} clickSquare={()=>handleClick(7)} />
-          <Square value={squares[8]} clickSquare={()=>handleClick(8)} />
-          </div>
+          <MySquares />
         </div>
         <button className='shadow-btn' onClick={handleReload}>Play Again</button>
       </div>
     </div>
-
   )
 }
